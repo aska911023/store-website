@@ -7,7 +7,7 @@ from datetime import datetime, date
 
 # --- 1. 頁面設定 ---
 st.set_page_config(
-    page_title="給家長的 AI 學習工作坊 | AI Future Lab", 
+    page_title="給學生的 AI 學習工作坊 | AI Future Lab", # [修改] 瀏覽器標籤標題
     page_icon="🌱", 
     layout="wide"
 )
@@ -115,8 +115,7 @@ def calculate_best_price(city, date_str, quantity):
 # === HERO ===
 st.markdown("""
     <div class="hero-section">
-        <div class="hero-title">給家長的 AI 學習工作坊</div>
-        <p class="hero-desc">
+        <div class="hero-title">給學生的 AI 學習工作坊</div> <p class="hero-desc">
             孩子每天都在接觸 AI，但多數孩子不知道怎麼好好使用它。<br>
             這套工作坊不教寫程式，而是教孩子三件真正重要的事：<br>
             <b>怎麼思考、怎麼表達、怎麼與 AI 合作，而不是依賴 AI。</b>
@@ -283,6 +282,7 @@ with st.container():
             display_dates = [get_date_display_string(d) for d in raw_dates]
             
             # 3. 顯示選單 (CSS 會讓它變方塊)
+            # [重要] 這裡沒有 horizontal=True，配合 styles.py 強制變方塊格
             selected_date_display = st.radio("選擇日期", display_dates, label_visibility="collapsed")
             
             # 4. [還原] 把選到的 "1月3日 (週六)" 變回 "1月3日" 給資料庫用
@@ -337,6 +337,7 @@ with st.container():
                     line_id = st.text_input("Line ID", placeholder="方便建立班級群組與聯繫")
                     email = st.text_input("電子信箱", placeholder="用於寄送繳費通知")
                     
+                    # 動態產生學生欄位
                     student_names = []
                     student_ages = []
                     student_genders = []
